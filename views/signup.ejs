@@ -1,0 +1,16 @@
+<%- include('partials/header') %>
+<div class="wrap formwrap">
+  <div class="center" style="margin-bottom:18px"><h1 style="font-size:28px">Create your account</h1><p class="muted">Book venues and track your requests.</p></div>
+  <div class="panel pad">
+    <% if (typeof errors !== 'undefined' && errors.length) { %><div class="errbox"><ul><% errors.forEach(function(e){ %><li><%= e %></li><% }) %></ul></div><% } %>
+    <form method="post" action="/signup">
+      <div class="field"><label>Full name</label><input name="name" value="<%= (typeof form !== 'undefined' && form.name) || '' %>"></div>
+      <div class="field"><label>Email</label><input name="email" type="email" value="<%= (typeof form !== 'undefined' && form.email) || '' %>"></div>
+      <div class="field"><label>Phone (optional)</label><input name="phone" value="<%= (typeof form !== 'undefined' && form.phone) || '' %>"></div>
+      <div class="field"><label>Password</label><input name="password" type="password" placeholder="At least 6 characters"></div>
+      <button class="btn btn-primary btn-block" type="submit">Create account</button>
+    </form>
+    <p class="hint">Already have an account? <a href="/login">Sign in</a></p>
+  </div>
+</div>
+<%- include('partials/footer') %>

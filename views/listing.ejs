@@ -1,0 +1,41 @@
+<%- include('partials/header') %>
+<div class="wrap">
+  <div class="crumb"><a href="/">Home</a> / <a href="/category/<%= l.category %>"><%= cat.short %></a> / <%= l.name %></div>
+  <div class="detail">
+    <div>
+      <% var gallery = galleryFor(l); %>
+      <div class="gallery" style="grid-template-columns:2fr 1fr">
+        <div class="ph" style="background-image:url('<%= gallery[0] %>')"><span class="tag"><%= cat.short %></span></div>
+        <div class="col">
+          <div class="ph s" style="background-image:url('<%= gallery[1] %>')"></div>
+          <div class="ph s" style="background-image:url('<%= gallery[2] %>')"></div>
+        </div>
+      </div>
+      <div class="panel pad" style="margin-top:16px">
+        <div class="sub"><%= l.area ? l.area + ', ' : '' %><%= l.city %></div>
+        <h1><%= l.name %></h1>
+        <p class="muted" style="margin-top:8px;max-width:62ch"><%= l.description %></p>
+        <% if (l.address) { %><p class="muted" style="font-size:13px;margin-top:6px">&#128205; <%= l.address %></p><% } %>
+
+        <h3 style="margin-top:18px;font-size:16px">What's included</h3>
+        <div class="feat"><% features.forEach(function(ft){ %><span class="mtag"><%= ft %></span><% }) %></div>
+
+        <% if (packages.length) { %>
+          <h3 style="font-size:16px">Packages</h3>
+          <div class="pkgs"><% packages.forEach(function(p){ %><div class="pkg"><div><b><%= p.name %></b><div class="muted" style="font-size:12.5px"><%= p.desc %></div></div><div class="p"><%= p.price %></div></div><% }) %></div>
+        <% } %>
+
+      </div>
+    </div>
+
+    <div class="panel pad side">
+      <div class="muted" style="font-size:12px;text-transform:uppercase;letter-spacing:.06em;font-weight:700">Starting price</div>
+      <div class="big-price"><%= priceLabel(l) %></div>
+      <% if (l.phone) { %><p class="contact-line">&#128222; <%= l.phone %></p><% } else { %><p class="contact-line muted">Contact via booking request</p><% } %>
+      <a class="btn btn-primary btn-block" style="margin-top:12px" href="/booking/<%= l.slug %>">Send booking request</a>
+      <a class="btn btn-outline btn-block" style="margin-top:10px" href="/category/<%= l.category %>">See similar</a>
+      <p class="hint" style="margin-top:14px">No payment now, the provider replies to confirm.</p>
+    </div>
+  </div>
+</div>
+<%- include('partials/footer') %>

@@ -1,0 +1,41 @@
+</main>
+<footer class="foot">
+  <div class="wrap">
+    <div class="foot-grid">
+      <div>
+        <span class="logo-word" style="font-size:28px">Event<i>Ease</i></span>
+        <p>Discover and book event venues and services across Faisalabad, all in one place.</p>
+      </div>
+      <div><h4>Explore</h4><a href="/category/wedding">Wedding Venues</a><a href="/category/corporate">Corporate Events</a><a href="/category/seminar">Seminars &amp; Training</a><a href="/category/photography">Photography</a></div>
+      <div><h4>Services</h4><a href="/category/decor">Decor &amp; Planning</a><a href="/category/bridal">Bridal Wear</a><a href="/category/groom">Groom Wear</a><a href="/category/catering">Catering</a></div>
+      <div><h4>Company</h4><a href="/about">About</a><a href="/contact">Contact</a><a href="/login">Sign in</a><a href="/signup">Create account</a></div>
+    </div>
+    <div class="foot-bar">
+      <span>&copy; 2026 Event Ease. All rights reserved.</span>
+      <span>Faisalabad, Pakistan &middot; hello@eventease.pk</span>
+    </div>
+  </div>
+</footer>
+
+<button class="fab" onclick="document.getElementById('fbModal').classList.add('open')" aria-label="Give feedback">
+  <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>
+</button>
+<div class="modal-bg" id="fbModal" onclick="if(event.target===this)this.classList.remove('open')">
+  <div class="modal">
+    <button class="x" onclick="document.getElementById('fbModal').classList.remove('open')" aria-label="Close">&times;</button>
+    <h3>How would you rate us?</h3>
+    <form method="post" action="/feedback">
+      <div class="rate-row">
+        <label><input type="radio" name="rating" value="1"><span class="em">&#128547;</span>Very bad</label>
+        <label><input type="radio" name="rating" value="2"><span class="em">&#128577;</span>Bad</label>
+        <label><input type="radio" name="rating" value="3" checked><span class="em">&#128528;</span>Average</label>
+        <label><input type="radio" name="rating" value="4"><span class="em">&#128578;</span>Good</label>
+        <label><input type="radio" name="rating" value="5"><span class="em">&#128515;</span>Excellent</label>
+      </div>
+      <div class="field"><label>Any suggestion?</label><textarea name="message" rows="3" placeholder="Type here&hellip;"></textarea></div>
+      <button class="btn btn-primary btn-block" type="submit">Submit feedback</button>
+    </form>
+  </div>
+</div>
+</body>
+</html>

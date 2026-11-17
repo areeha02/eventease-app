@@ -1,0 +1,17 @@
+<%- include('partials/header') %>
+<div class="wrap"><div class="welcome">
+  <div class="big-check"><svg width="44" height="44" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l4.5 4.5L19 7"/></svg></div>
+  <h1 style="font-size:clamp(26px,4vw,32px)">You're in, <%= user.name.split(' ')[0] %>! &#9825;</h1>
+  <p class="muted" style="margin-top:6px">Your Event Ease account is ready. Here's what you can do now.</p>
+  <div class="unlocked">
+    <div class="u"><div class="em">&#127963;&#65039;</div><b>Venues</b><span>Halls &amp; marquees</span></div>
+    <div class="u"><div class="em">&#128247;</div><b>Photographers</b><span>Local studios</span></div>
+    <div class="u"><div class="em">&#128132;</div><b>Bridal &amp; Groom</b><span>Wear &amp; styling</span></div>
+    <div class="u"><div class="em">&#127869;&#65039;</div><b>Catering &amp; Decor</b><span>&amp; more</span></div>
+  </div>
+  <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap">
+    <a class="btn btn-primary" href="/services">Start exploring vendors</a>
+    <a class="btn btn-outline" href="/dashboard">Go to dashboard</a>
+  </div>
+</div></div>
+<%- include('partials/footer') %>

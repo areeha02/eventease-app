@@ -1,0 +1,15 @@
+<%- include('partials/header') %>
+<div class="wrap formwrap">
+  <div class="center" style="margin-bottom:18px"><h1 style="font-size:28px">Welcome back &#9825;</h1><p class="muted">Sign in to book and track your events.</p></div>
+  <div class="panel pad">
+    <% if (typeof error !== 'undefined' && error) { %><div class="errbox"><%= error %></div><% } %>
+    <form method="post" action="/login">
+      <input type="hidden" name="next" value="<%= next %>">
+      <div class="field"><label>Email</label><input name="email" type="email" placeholder="you@email.com"></div>
+      <div class="field"><label>Password</label><input name="password" type="password" placeholder="Your password"></div>
+      <button class="btn btn-primary btn-block" type="submit">Sign in</button>
+    </form>
+    <p class="hint">New here? <a href="/signup">Create an account</a></p>
+  </div>
+</div>
+<%- include('partials/footer') %>

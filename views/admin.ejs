@@ -1,0 +1,39 @@
+<%- include('partials/header') %>
+<div class="wrap"><div class="dash">
+  <aside class="dside">
+    <div class="duser"><span class="av">A</span><div><b><%= user.name %></b><span>Administrator</span></div></div>
+    <nav class="dnav">
+      <a class="on" href="/admin">Booking requests</a>
+      <a href="/services">Listings</a>
+      <a href="/">View site</a>
+      <form class="inline" method="post" action="/logout"><button type="submit" style="width:100%;text-align:left;background:none;border:none;font:inherit;cursor:pointer;padding:10px 12px;border-radius:10px;font-weight:600;color:var(--muted)">Logout</button></form>
+    </nav>
+  </aside>
+  <div>
+    <div class="dhead"><div><h1>Admin dashboard</h1><p class="muted">Review and respond to booking requests.</p></div></div>
+    <div class="stats">
+      <div class="stat"><b><%= counts.listings %></b><span>Listings</span></div>
+      <div class="stat"><b><%= counts.users %></b><span>Customers</span></div>
+      <div class="stat"><b><%= counts.pending %></b><span>Pending requests</span></div>
+    </div>
+    <h3 style="font-size:17px;margin-bottom:12px">All booking requests</h3>
+    <% if (bookings.length === 0) { %><div class="empty">No booking requests yet.</div>
+    <% } else { %>
+      <div class="tablewrap"><table class="tbl"><thead><tr><th>Ref</th><th>Customer</th><th>Venue / service</th><th>Date</th><th>Guests</th><th>Status</th><th>Action</th></tr></thead><tbody>
+        <% bookings.forEach(function(b){ %><tr>
+          <td><%= b.ref %></td>
+          <td><%= b.user_name %></td>
+          <td><%= b.listing_name %></td>
+          <td><%= b.event_date %></td>
+          <td><%= b.guests || ',' %></td>
+          <td><span class="badge <%= b.status %>"><%= b.status %></span></td>
+          <td style="white-space:nowrap">
+            <form class="inline" method="post" action="/admin/booking/<%= b.id %>/status"><input type="hidden" name="status" value="Approved"><button class="btn btn-primary btn-sm" type="submit">Approve</button></form>
+            <form class="inline" method="post" action="/admin/booking/<%= b.id %>/status"><input type="hidden" name="status" value="Rejected"><button class="btn btn-outline btn-sm" type="submit">Reject</button></form>
+          </td>
+        </tr><% }) %>
+      </tbody></table></div>
+    <% } %>
+  </div>
+</div></div>
+<%- include('partials/footer') %>

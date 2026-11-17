@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title><%= title %></title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Pacifico&family=Poppins:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap">
+<link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+<header class="nav">
+  <div class="wrap nav-row">
+    <a class="brand" href="/">
+      <span class="mark"><b class="elogo">E</b></span>
+      <span class="logo-word">Event<i>Ease</i></span>
+    </a>
+    <input type="checkbox" id="navtog" class="navtog">
+    <label for="navtog" class="burger" aria-label="Toggle menu">&#9776;</label>
+    <nav class="nav-links">
+      <a href="/" class="<%= curPath === '/' ? 'on' : '' %>">Home</a>
+      <a href="/services" class="<%= curPath === '/services' ? 'on' : '' %>">All Services</a>
+      <a href="/plans" class="<%= curPath === '/plans' ? 'on' : '' %>">Plans</a>
+      <a href="/category/wedding">Wedding Venues</a>
+      <a href="/category/photography">Photography</a>
+      <a href="/category/catering">Catering</a>
+      <a href="/about" class="<%= curPath === '/about' ? 'on' : '' %>">About</a>
+      <a href="/contact" class="<%= curPath === '/contact' ? 'on' : '' %>">Contact</a>
+    </nav>
+    <div class="nav-right">
+      <% if (user) { %>
+        <a class="btn btn-ghost hide-sm" href="<%= user.role === 'admin' ? '/admin' : '/dashboard' %>"><%= user.role === 'admin' ? 'Admin' : 'Dashboard' %></a>
+        <form class="inline" method="post" action="/logout"><button class="btn btn-primary" type="submit">Logout</button></form>
+      <% } else { %>
+        <a class="btn btn-ghost hide-sm" href="/login">Sign in</a>
+        <a class="btn btn-primary" href="/signup">Sign up</a>
+      <% } %>
+    </div>
+  </div>
+</header>
+<% if (flash) { %><div class="wrap"><div class="flash flash-<%= flash.type %>"><%= flash.msg %></div></div><% } %>
+<main>

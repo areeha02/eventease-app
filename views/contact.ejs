@@ -1,0 +1,14 @@
+<%- include('partials/header') %>
+<section class="sec"><div class="wrap formwrap">
+  <div class="center" style="margin-bottom:18px"><h1 style="font-size:28px">Contact us</h1><p class="muted">Questions or feedback? Send us a message.</p></div>
+  <div class="panel pad">
+    <form method="post" action="/contact">
+      <div class="field"><label>Name</label><input name="name" required></div>
+      <div class="field"><label>Email</label><input name="email" type="email" required></div>
+      <div class="field"><label>Message</label><textarea name="message" rows="4" required></textarea></div>
+      <button class="btn btn-primary btn-block" type="submit">Send message</button>
+    </form>
+    <p class="hint">Or email <b>hello@eventease.pk</b> &nbsp;&middot;&nbsp; Faisalabad, Pakistan</p>
+  </div>
+</div></section>
+<%- include('partials/footer') %>

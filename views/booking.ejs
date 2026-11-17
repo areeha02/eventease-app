@@ -1,0 +1,36 @@
+<%- include('partials/header') %>
+<div class="wrap formwrap wide">
+  <a class="crumb" href="/listing/<%= l.slug %>">&larr; Back to <%= l.name %></a>
+  <h1 style="font-size:28px;margin:8px 0 4px">Send a booking request</h1>
+  <p class="muted" style="margin-bottom:18px">This is a request, not a confirmed reservation, <%= l.name %> will review it and respond.</p>
+
+  <% if (typeof errors !== 'undefined' && errors.length) { %>
+    <div class="errbox"><b>Please fix the following:</b><ul><% errors.forEach(function(e){ %><li><%= e %></li><% }) %></ul></div>
+  <% } %>
+
+  <div class="panel pad">
+    <div style="display:flex;align-items:center;gap:12px;padding-bottom:16px;border-bottom:1px solid var(--line);margin-bottom:18px">
+      <span class="ph" style="--h:<%= l.hue %>;width:52px;height:52px;min-height:0;border-radius:12px;background-image:url('<%= imageFor(l) %>')"></span>
+      <div><b style="font-family:var(--display)"><%= l.name %></b><div class="muted" style="font-size:12.5px"><%= cat.short %> &middot; <%= l.city %> &middot; <%= priceLabel(l) %></div></div>
+    </div>
+    <form method="post" action="/booking">
+      <input type="hidden" name="slug" value="<%= l.slug %>">
+      <div class="row2">
+        <div class="field"><label>Event type</label><select name="event_type"><option>Wedding</option><option>Engagement</option><option>Birthday</option><option>Corporate</option><option>Seminar</option><option>Other</option></select></div>
+        <div class="field"><label>Event date *</label><input type="date" name="event_date" value="<%= (typeof form !== 'undefined' && form.event_date) || '' %>"></div>
+      </div>
+      <div class="row2">
+        <div class="field"><label>Expected guests</label><input type="number" name="guests" value="<%= (typeof form !== 'undefined' && form.guests) || '' %>" placeholder="e.g. 150"></div>
+        <div class="field"><label>Preferred time</label><select name="time_pref"><option>Morning</option><option>Afternoon</option><option selected>Evening</option><option>Night</option></select></div>
+      </div>
+      <div class="field"><label>Your name *</label><input name="name" value="<%= (typeof form !== 'undefined' && form.name) || user.name %>"></div>
+      <div class="row2">
+        <div class="field"><label>Phone *</label><input name="phone" value="<%= (typeof form !== 'undefined' && form.phone) || '' %>" placeholder="03XX XXXXXXX"></div>
+        <div class="field"><label>Email</label><input name="email" value="<%= (typeof form !== 'undefined' && form.email) || user.email %>"></div>
+      </div>
+      <div class="field"><label>Special requirements (optional)</label><textarea name="requirements" rows="3" placeholder="Anything the provider should know"><%= (typeof form !== 'undefined' && form.requirements) || '' %></textarea></div>
+      <button class="btn btn-primary btn-block" type="submit">Submit booking request</button>
+    </form>
+  </div>
+</div>
+<%- include('partials/footer') %>

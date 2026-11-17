@@ -1,0 +1,31 @@
+<%- include('partials/header') %>
+<div class="wrap"><div class="dash">
+  <aside class="dside">
+    <div class="duser"><span class="av"><%= user.name.charAt(0) %></span><div><b><%= user.name %></b><span>Customer</span></div></div>
+    <nav class="dnav">
+      <a href="/dashboard">Overview</a>
+      <a class="on" href="/dashboard/bookings">My bookings</a>
+      <a href="/services">Browse services</a>
+      <form class="inline" method="post" action="/logout"><button type="submit" style="width:100%;text-align:left;background:none;border:none;font:inherit;cursor:pointer;padding:10px 12px;border-radius:10px;font-weight:600;color:var(--muted)">Logout</button></form>
+    </nav>
+  </aside>
+  <div>
+    <div class="dhead"><div><h1>My bookings</h1><p class="muted">All your booking requests and their status.</p></div><a class="btn btn-primary" href="/services">+ New booking</a></div>
+    <% if (list.length === 0) { %>
+      <div class="empty">No bookings yet. <a href="/services" style="color:var(--primary);font-weight:600">Browse services</a>.</div>
+    <% } else { %>
+      <div class="tablewrap"><table class="tbl"><thead><tr><th>Ref</th><th>Venue / service</th><th>Event</th><th>Date</th><th>Guests</th><th>Status</th><th></th></tr></thead><tbody>
+        <% list.forEach(function(b){ %><tr>
+          <td><%= b.ref %></td>
+          <td><a href="/listing/<%= b.listing_slug %>" style="color:var(--primary);font-weight:600"><%= b.listing_name %></a></td>
+          <td><%= b.event_type || ',' %></td>
+          <td><%= b.event_date %></td>
+          <td><%= b.guests || ',' %></td>
+          <td><span class="badge <%= b.status %>"><%= b.status %></span></td>
+          <td><% if (b.status === 'Pending' || b.status === 'Approved') { %><form class="inline" method="post" action="/booking/<%= b.id %>/cancel"><button class="btn btn-outline btn-sm" type="submit">Cancel</button></form><% } %></td>
+        </tr><% }) %>
+      </tbody></table></div>
+    <% } %>
+  </div>
+</div></div>
+<%- include('partials/footer') %>

@@ -1,0 +1,109 @@
+<%- include('partials/header') %>
+
+<section class="hero">
+  <div class="wrap hero-in">
+    <p class="tag">venues, vendors &amp; everything &#9825;</p>
+    <h1>Your whole <em>event</em>, in one place.</h1>
+    <p class="lead">From wedding halls and caterers to photographers and decorators, discover local Faisalabad vendors, compare them, and send a booking request in minutes.</p>
+    <form class="searchbar" action="/services" method="get">
+      <input name="q" placeholder="Search venue or service&hellip;">
+      <select name="city">
+        <option value="">All cities</option>
+        <% cities.forEach(function(c){ %><option value="<%= c %>"><%= c %></option><% }) %>
+      </select>
+      <select name="cat">
+        <option value="">All categories</option>
+        <% categories.forEach(function(c){ %><option value="<%= c.key %>"><%= c.short %></option><% }) %>
+      </select>
+      <button class="btn btn-primary" type="submit">Search</button>
+    </form>
+  </div>
+</section>
+
+<div class="stats-strip"><div class="wrap">
+  <span><b>13</b> local vendors</span>
+  <span><b>8</b> service categories</span>
+  <span><b>Faisalabad</b></span>
+  <span><b>100%</b> free to request</span>
+</div></div>
+
+<section class="sec"><div class="wrap">
+  <div class="sec-head">
+    <h2>Browse by category</h2>
+    <svg class="tu" viewBox="0 0 118 11" fill="none"><path d="M3 7 Q18 1 33 7 T63 7 T93 7 T115 7" stroke="currentColor" stroke-width="3" stroke-linecap="round"/></svg>
+    <p>Everything you need for your event, organised by type.</p>
+  </div>
+  <div class="cat-grid">
+    <% categories.forEach(function(c){ %>
+      <a class="cat-card" href="/category/<%= c.key %>" style="background-image:url('/img/<%= c.key %>-1.jpg')">
+        <div class="cc-label"><b><%= c.short %></b><span><%= countMap[c.key] || 0 %> listings</span></div>
+      </a>
+    <% }) %>
+  </div>
+</div></section>
+
+<section class="sec" style="background:var(--warm);border-block:1px solid var(--line)"><div class="wrap">
+  <div class="sec-head">
+    <h2>Featured in Faisalabad</h2>
+    <svg class="tu" viewBox="0 0 118 11" fill="none"><path d="M3 7 Q18 1 33 7 T63 7 T93 7 T115 7" stroke="currentColor" stroke-width="3" stroke-linecap="round"/></svg>
+    <p>Top-rated venues and vendors to get you started.</p>
+  </div>
+  <div class="grid">
+    <% featured.forEach(function(l){ %><%- include('partials/card', { l: l }) %><% }) %>
+  </div>
+  <div class="center" style="margin-top:26px"><a class="btn btn-ghost" href="/services">View all services &rarr;</a></div>
+</div></section>
+
+<section class="sec"><div class="wrap"><div class="why">
+  <div class="sec-head" style="margin-bottom:6px"><h2>Why Event Ease? &#9825;</h2></div>
+  <div class="why-grid">
+    <div class="why-item"><div class="ic"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3-3"/></svg></div><b>One place</b><p>Every event service in Faisalabad, in a single platform.</p></div>
+    <div class="why-item"><div class="ic"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M3 10h18M7 3v4M17 3v4M5 7h14v12H5z"/></svg></div><b>Compare easily</b><p>Prices, capacity, ratings and packages side by side.</p></div>
+    <div class="why-item"><div class="ic"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M4 5h16v12H8l-4 4z"/></svg></div><b>Request in a tap</b><p>Send a booking request and track its status.</p></div>
+    <div class="why-item"><div class="ic"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M9 12l2 2 4-4M12 3l7 3v6c0 5-3.5 7.5-7 9-3.5-1.5-7-4-7-9V6z"/></svg></div><b>Your dashboard</b><p>All your requests and their status in one view.</p></div>
+  </div>
+</div></div></section>
+
+<section class="sec"><div class="wrap">
+  <div class="sec-head" style="margin-bottom:22px"><h2 style="font-size:22px">Popular in Faisalabad</h2></div>
+  <div class="citylinks">
+    <div><h4>By service</h4>
+      <a href="/category/wedding">Wedding Venues</a><a href="/category/catering">Caterers</a><a href="/category/photography">Photographers</a><a href="/category/decor">Decor &amp; Planning</a><a href="/category/bridal">Bridal Wear</a><a href="/category/groom">Groom Wear</a><a href="/category/corporate">Corporate Events</a><a href="/category/seminar">Seminars &amp; Training</a>
+    </div>
+    <div><h4>Popular areas</h4>
+      <a href="/services?q=D%20Ground">D Ground</a><a href="/services?q=Madina%20Town">Madina Town</a><a href="/services?q=Peoples%20Colony">Peoples Colony</a><a href="/services?q=Kohinoor%20City">Kohinoor City</a><a href="/services?q=Samanabad">Samanabad</a>
+    </div>
+    <div><h4>Quick links</h4>
+      <a href="/services">All services</a><a href="/signup">Create an account</a><a href="/about">How it works</a><a href="/contact">Contact us</a>
+    </div>
+  </div>
+</div></section>
+
+<section class="sec" style="background:var(--warm);border-top:1px solid var(--line)"><div class="wrap">
+  <div class="appband">
+    <div>
+      <h2>Get the <span>Event Ease</span> app</h2>
+      <p>Scan the QR code to open Event Ease on your phone and plan on the go.</p>
+    </div>
+    <div class="phone-mock"><div class="scr">
+      <div class="bar">Event Ease</div>
+      <div class="gridp">
+        <span style="background-image:url('/img/wedding-1.jpg')"></span>
+        <span style="background-image:url('/img/photography-1.jpg')"></span>
+        <span style="background-image:url('/img/catering-1.jpg')"></span>
+        <span style="background-image:url('/img/decor-1.jpg')"></span>
+        <span style="background-image:url('/img/bridal-1.jpg')"></span>
+        <span style="background-image:url('/img/groom-1.jpg')"></span>
+        <span style="background-image:url('/img/corporate-1.jpg')"></span>
+        <span style="background-image:url('/img/seminar-1.jpg')"></span>
+        <span style="background-image:url('/img/wedding-2.jpg')"></span>
+      </div>
+    </div></div>
+    <div style="text-align:center">
+      <div class="qr"><svg viewBox="0 0 100 100" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" fill="#2A1320"><rect x="6" y="6" width="28" height="28"/><rect x="10" y="10" width="20" height="20" fill="#fff"/><rect x="14" y="14" width="12" height="12"/><rect x="66" y="6" width="28" height="28"/><rect x="70" y="10" width="20" height="20" fill="#fff"/><rect x="74" y="14" width="12" height="12"/><rect x="6" y="66" width="28" height="28"/><rect x="10" y="70" width="20" height="20" fill="#fff"/><rect x="14" y="74" width="12" height="12"/><rect x="42" y="8" width="5" height="5"/><rect x="50" y="8" width="5" height="5"/><rect x="44" y="16" width="5" height="5"/><rect x="54" y="18" width="5" height="5"/><rect x="40" y="26" width="5" height="5"/><rect x="48" y="30" width="5" height="5"/><rect x="8" y="42" width="5" height="5"/><rect x="18" y="44" width="5" height="5"/><rect x="26" y="40" width="5" height="5"/><rect x="40" y="42" width="5" height="5"/><rect x="48" y="46" width="5" height="5"/><rect x="58" y="42" width="5" height="5"/><rect x="66" y="46" width="5" height="5"/><rect x="74" y="42" width="5" height="5"/><rect x="84" y="44" width="5" height="5"/><rect x="42" y="54" width="5" height="5"/><rect x="52" y="56" width="5" height="5"/><rect x="62" y="54" width="5" height="5"/><rect x="72" y="58" width="5" height="5"/><rect x="82" y="54" width="5" height="5"/><rect x="44" y="66" width="5" height="5"/><rect x="54" y="70" width="5" height="5"/><rect x="64" y="66" width="5" height="5"/><rect x="74" y="72" width="5" height="5"/><rect x="84" y="66" width="5" height="5"/><rect x="46" y="80" width="5" height="5"/><rect x="58" y="84" width="5" height="5"/><rect x="68" y="80" width="5" height="5"/><rect x="80" y="82" width="5" height="5"/></svg></div>
+      <div class="muted" style="font-size:11.5px;margin-top:6px">Scan to get the app</div>
+    </div>
+  </div>
+</div></section>
+
+<%- include('partials/footer') %>
